@@ -4,7 +4,7 @@ import { View, StyleSheet, LayoutAnimation } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 import Button from "./Button";
-import { colors, spacings } from "../theme/default";
+import { defaults } from "../theme";
 
 interface IBottomSheet {
   children: React.ReactNode;
@@ -26,7 +26,7 @@ const BottomSheet = ({ children, visibleContent }: IBottomSheet) => {
           <AntDesign
             name={isShowBottomSheet ? "caretdown" : "caretup"}
             size={hp("3%")}
-            color={colors.primary}
+            color={defaults.colors.primary}
           />
         </Button>
       </View>
@@ -39,9 +39,9 @@ const BottomSheet = ({ children, visibleContent }: IBottomSheet) => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    paddingHorizontal: spacings.contentPaddingHorizontal,
+    paddingHorizontal: defaults.spacings.contentPaddingHorizontal,
     paddingBottom: hp("2.5%"),
-    backgroundColor: colors.content,
+    backgroundColor: defaults.colors.content,
   },
   header: {
     alignItems: "center",

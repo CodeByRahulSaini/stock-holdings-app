@@ -2,7 +2,7 @@ import { View, StyleSheet } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 import Typography from "./Typography";
-import { colors, spacings } from "../theme/default";
+import { colors, spacings } from "../theme/defaults";
 
 interface IHeader {
   title: string;

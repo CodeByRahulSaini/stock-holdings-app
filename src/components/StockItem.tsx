@@ -1,10 +1,10 @@
 import { View, StyleSheet } from "react-native";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 import LabeledAmount from "./LabeledAmount";
 import Typography from "./Typography";
-import { colors, spacings } from "../theme/default";
+import { defaults } from "../theme";
 import { IHolding } from "../types/common";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const StockItem = ({ symbol, quantity, ltp, pnl }: IHolding) => {
   return (
@@ -28,14 +28,14 @@ export default StockItem;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    paddingLeft: spacings.contentPaddingHorizontal,
+    paddingLeft: defaults.spacings.contentPaddingHorizontal,
     display: "flex",
     alignContent: "center",
-    backgroundColor: colors.content,
+    backgroundColor: defaults.colors.content,
   },
   layout: {
     flex: 1,
-    padding: spacings.contentPaddingHorizontal,
+    padding: defaults.spacings.contentPaddingHorizontal,
     gap: hp("0.7%"),
     paddingLeft: 0,
     borderBottomColor: "rgba(0,0,0,0.1)",

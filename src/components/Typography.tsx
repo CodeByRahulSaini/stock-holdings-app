@@ -1,22 +1,22 @@
 import { StyleProp, Text, TextStyle } from "react-native";
 
-import { textVariants, TextVariants } from "../theme/default";
+import { defaults } from "../theme";
 
 interface ITypography {
-  variant: TextVariants;
+  variant: defaults.TextVariants;
   children: React.ReactNode;
   style?: StyleProp<TextStyle>;
 }
 
 const Typography = ({
   children,
-  variant = TextVariants.Body,
+  variant = defaults.TextVariants.Body,
   style,
 }: ITypography) => {
-  const { fontSize, fontWeight } = textVariants[variant];
+  const { fontSize, fontWeight } = defaults.textVariants[variant];
   return <Text style={[{ fontSize, fontWeight }, style]}>{children}</Text>;
 };
 
-Typography.Variants = TextVariants;
+Typography.Variants = defaults.TextVariants;
 
 export default Typography;

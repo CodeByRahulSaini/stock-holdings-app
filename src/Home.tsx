@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
+import {
+  BottomSheet,
+  Header,
+  LabeledAmount,
+  StockItem,
+  Typography,
+} from "./components";
+import { consts } from "./config";
 import useCalculations from "./hooks/useCalculations";
-import consts from "./config/consts";
-
-import StockItem from "./components/StockItem";
-import LabeledAmount from "./components/LabeledAmount";
-import Typography from "./components/Typography";
-import Header from "./components/Header";
-import BottomSheet from "./components/BottomSheet";
-import { Entypo } from "@expo/vector-icons";
-
-import { colors } from "./theme/default";
+import { defaults } from "./theme";
 
 export default function App() {
   const [mockData, setMockData] = useState([]);
@@ -79,7 +78,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: defaults.colors.background,
   },
   listContainer: {
     flex: 1,

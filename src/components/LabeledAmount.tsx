@@ -1,15 +1,15 @@
 import { View, StyleSheet } from "react-native";
 
 import Typography from "./Typography";
-import consts from "../config/consts";
-import { TextVariants } from "../theme/default";
-import { formatNumber } from "../utils/number";
+import { consts } from "../config";
+import { defaults } from "../theme";
+import { number } from "../utils";
 
 interface ILabeledAmount {
   label: string;
-  labelVariant?: TextVariants;
+  labelVariant?: defaults.TextVariants;
   value: number;
-  valueVariant?: TextVariants;
+  valueVariant?: defaults.TextVariants;
 }
 
 const LabeledAmount = ({
@@ -25,7 +25,7 @@ const LabeledAmount = ({
       </Typography>
       <Typography variant={valueVariant || Typography.Variants.BodyBold}>
         {` ${consts.currency}`}
-        {formatNumber(value)}
+        {number.formatNumber(value)}
       </Typography>
     </View>
   );
