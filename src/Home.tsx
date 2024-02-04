@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 
 import {
   BottomSheet,
@@ -10,18 +13,16 @@ import {
   Typography,
 } from "./components";
 import { consts } from "./config";
-import useCalculations from "./hooks/useCalculations";
+import { useAPI, useCalculations } from "./hooks";
 import { defaults } from "./theme";
+import { IHolding } from "./types/common";
+
+interface IAPIRespone {
+  userHolding: IHolding[];
+}
 
 export default function App() {
-  const [mockData, setMockData] = useState([]);
-
-  useEffect(() => {
-    fetch(consts.mockDataUrl)
-      .then((res) => res.json())
-      .then((res) => setMockData(res.userHolding))
-      .catch();
-  }, []);
+  const [mockData, error] = useAPI<IAPIRespone>(consts.mockDataUrl, []);
 
   const {
     updatedHoldings,
@@ -29,11 +30,19 @@ export default function App() {
     totalInvestement,
     totalPnL,
     todayPnl,
-  } = useCalculations({ holdings: mockData });
+  } = useCalculations({ holdings: mockData?.userHolding || [] });
 
   return (
     <View style={styles.container}>
       <Header title="Upstox Holding" />
+      {error && (
+        <Typography
+          style={styles.errorText}
+          variant={Typography.Variants.BodyBold}
+        >
+          {error}
+        </Typography>
+      )}
       <View style={styles.listContainer}>
         <FlatList
           data={updatedHoldings}
@@ -85,4 +94,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   totalContainer: { marginBottom: hp("2%"), gap: hp("1%") },
+  errorText: {
+    padding: wp("2%"),
+    color: defaults.colors.textContrast,
+  },
 });

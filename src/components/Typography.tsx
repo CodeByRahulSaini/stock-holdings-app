@@ -3,7 +3,7 @@ import { StyleProp, Text, TextStyle } from "react-native";
 import { defaults } from "../theme";
 
 interface ITypography {
-  variant: defaults.TextVariants;
+  variant?: defaults.TextVariants;
   children: React.ReactNode;
   style?: StyleProp<TextStyle>;
 }
